@@ -1,0 +1,22 @@
+app:
+  context: /apps/catpro
+  name: catpro
+  title: MG's Blog
+  secret: 4d03c0bc-b220-4064-aabb-aaba3f8dd760
+  db:
+    dialect: mysql
+    database: catpro
+    host: localhost
+    username: root
+    password: root
+    port: 3306
+    dialectOptions:
+      charset: utf8mb4
+    define:
+      underscored: false
+      underscoredAll: false
+      charset: utf8
+      timestamps: true
+
+cas:
+  url: https://apps.nyumc.org/cas

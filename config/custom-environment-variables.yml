@@ -1,0 +1,8 @@
+app:
+  context: APP_CONTEXT
+  db:
+    database: APP_DB_DATABASE
+    host: APP_DB_HOST
+    username: APP_DB_USERNAME
+    password: APP_DB_PASSWORD
+    port: APP_DB_PORT

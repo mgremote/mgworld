@@ -1,0 +1,13 @@
+const config = require('config')
+
+module.exports = {
+  migrationsDir: 'migrations',
+  driver: 'mysql2',
+  dbConfig: {
+    database: config.get('app.db.database'),
+    host: config.get('app.db.host'),
+    port: config.get('app.db.port'),
+    user: config.get('app.db.username'),
+    password: config.get('app.db.password')
+  }
+}

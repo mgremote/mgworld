@@ -1,0 +1,100 @@
+{
+  "name": "Portfolio",
+  "version": "1.0.0",
+  "description": "Demo codebase for Meng Guo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "React",
+    "Node",
+    "Redux"
+  ],
+  "author": "Meng Guo",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "0.18.0",
+    "body-parser": "1.18.3",
+    "bootstrap": "4.3.1",
+    "config": "3.0.1",
+    "cookie-session": "2.0.0-beta.3",
+    "express": "4.16.4",
+    "font-awesome": "4.7.0",
+    "jquery": "^3.3.1",
+    "js-yaml": "3.12.1",
+    "lodash": "4.17.11",
+    "log4js": "^4.0.2",
+    "mysql2": "1.6.5",
+    "passport": "0.4.0",
+    "passport-cas2": "0.0.10",
+    "prop-types": "15.7.2",
+    "pug": "2.0.3",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
+    "react-redux": "6.0.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "reactstrap": "7.1.0",
+    "redux": "4.0.1",
+    "redux-logger": "3.0.6",
+    "redux-promise-middleware": "6.1.0",
+    "redux-thunk": "2.3.0",
+    "seamless-immutable": "7.1.4",
+    "sequelize": "4.42.0",
+    "sqlmigrate": "2.1.0",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "10.0.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "babelify": "10.0.0",
+    "browserify": "16.2.3",
+    "chastifol": "4.1.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest-cli": "24.1.0",
+    "mysql": "2.16.0",
+    "node-sass": "4.11.0",
+    "nodemon": "1.18.10",
+    "raf": "3.4.1",
+    "replay": "^2.4.0",
+    "sequelize-auto": "0.4.29",
+    "supertest": "3.4.2",
+    "watchify": "3.11.1"
+  },
+  "jest": {
+    "transform": {
+      "src/client/.*": "<rootDir>/node_modules/babel-jest"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "setupFiles": [
+      "raf/polyfill",
+      "./jest.init.js"
+    ],
+    "setupTestFrameworkScriptFile": "./jest.test.init.js",
+    "testRegex": ".*\\.test\\.js$",
+    "testURL": "http://localhost:3000/my-app/app"
+  }
+}

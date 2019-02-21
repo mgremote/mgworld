@@ -1,0 +1,31 @@
+image: node:8
+
+cache:
+  key: "node_modules"
+  paths:
+    - node_modules/
+
+services:
+  - iime/mysql-utf8:latest
+
+variables:
+  MYSQL_USER: root
+  MYSQL_PASSWORD: root
+  MYSQL_DATABASE: mspe
+  MYSQL_ROOT_PASSWORD: root
+  APP_DB_HOST: iime__mysql-utf8
+  APP_DB_DATABASE: mspe
+
+stages:
+  - setup
+  - test
+
+setup:
+  stage: setup
+  script:
+    - npm install
+
+test:
+  stage: test
+  script:
+    - make ci
