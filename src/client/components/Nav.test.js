@@ -1,19 +1,19 @@
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
-import { BrowserRouter } from 'react-router-dom';
-import { Collapse } from 'reactstrap';
+import {BrowserRouter} from 'react-router-dom';
+import {Collapse} from 'reactstrap';
 import Nav from './Nav';
 
 describe('components/Nav', () => {
-  window.APP_USER = { name: 'John Doe', username: 'doej01' };
+  window.APP_USER = {name: 'John Doe', username: 'doej01'};
 
   let component; let
     collapse;
   function render() {
     component = TestUtils.renderIntoDocument(
-      <BrowserRouter>
-        <Nav />
-      </BrowserRouter>,
+        <BrowserRouter>
+          <Nav />
+        </BrowserRouter>,
     );
     component = TestUtils.findRenderedComponentWithType(component, Nav);
     collapse = TestUtils.findRenderedComponentWithType(component, Collapse);

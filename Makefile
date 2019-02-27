@@ -1,6 +1,6 @@
 export PATH := node_modules/.bin:$(PATH)
 SHELL = /bin/bash
-JS = src/client/index.jsx
+JS = src/client/index.js
 JS_OUT = src/public/bundle.js
 SCSS = src/scss/style.scss
 CSS_OUT = src/public/
@@ -27,10 +27,10 @@ models: FORCE
 		-e mysql -o src/server/models
 
 server: FORCE
-	node src/server/index.jsx
+	node src/server/index.js
 
 server-watch: FORCE
-	nodemon --ignore src/public --ignore src/client src/server/index.jsx
+	nodemon --ignore src/public --ignore src/client src/server/index.js
 
 js: FORCE
 	browserify -t babelify $(JS) -o $(JS_OUT)

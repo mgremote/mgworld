@@ -12,5 +12,5 @@ html
     div#container
     script.
       window.APP_CONTEXT = "!{context}"
-      window.APP_USER = !{JSON.stringify(user)}
+      window.APP_USER = !{JSON.stringify(user || '')}
     script(src=context + "/public/bundle.js")

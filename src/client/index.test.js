@@ -1,25 +1,25 @@
-jest.mock('./components/Home');
+jest.mock('./components/Home')
 
 describe('client/index', () => {
   beforeEach(() => {
-    window.APP_USER = { name: 'John Doe', username: 'doej01' };
-    window.APP_CONTEXT = '/my-app';
-  });
+    window.APP_USER = { name: 'John Doe', username: 'doej01' }
+    window.APP_CONTEXT = '/my-app'
+  })
 
-  let $div;
+  let $div
   beforeEach(() => {
-    $div = window.document.createElement('div');
-    $div.id = 'container';
-    window.document.body.appendChild($div);
-  });
+    $div = window.document.createElement('div')
+    $div.id = 'container'
+    window.document.body.appendChild($div)
+  })
 
   afterEach(() => {
-    window.document.body.removeChild($div);
-  });
+    window.document.body.removeChild($div)
+  })
 
   it('renders', () => {
-    jest.unmock('./index');
-    require('./index');
-    expect($div.textContent).toContain('John Doe');
-  });
-});
+    jest.unmock('./index')
+    require('./index')
+    expect($div.textContent).toContain('John Doe')
+  })
+})

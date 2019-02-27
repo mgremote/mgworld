@@ -1,5 +1,5 @@
-function init(models) {
-  return null;
+function init (models) {
+  return null
 }
 
-module.exports = { init };
+module.exports = { init }

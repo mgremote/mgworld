@@ -1,8 +1,11 @@
 app:
-  context: /apps/catpro
+  context: /catpro
   name: catpro
   title: MG's Blog
-  secret: 4d03c0bc-b220-4064-aabb-aaba3f8dd760
+  secret: 5e04c0bc-b220-5076-bbdd-aaba3f8de881
+  key: 4d03c0bcb2204064aabbaaba3f8dd987
+  iv: 5d02c0ecb1206065
+  alg: aes-256-cbc
   db:
     dialect: mysql
     database: catpro
@@ -17,6 +20,3 @@ app:
       underscoredAll: false
       charset: utf8
       timestamps: true
-
-cas:
-  url: https://apps.nyumc.org/cas

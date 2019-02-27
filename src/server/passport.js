@@ -1,62 +1,67 @@
-const config = require('config');
-const CasStrategy = require('passport-cas2').Strategy;
-const passport = require('passport');
-const { User } = require('./db');
+const config = require('config')
+const LocalStrategy = require('passport-local').Strategy
+const passport = require('passport')
+const { User } = require('./db')
+const { encrypt } = require('./cryptoService')
 
-const context = config.get('app.context');
-const casURL = config.get('cas.url');
+const context = config.get('app.context')
 
-function serializeUser(user, done) {
-  done(undefined, JSON.stringify({
-    username: user.username,
-    name: `${user.firstName} ${user.lastName}`,
-  }));
+function serializeUser (user, done) {
+  done(undefined, JSON.stringify(user))
 }
 
-function deserializeUser(userJson, done) {
-  done(undefined, JSON.parse(userJson));
+function deserializeUser (userJson, done) {
+  done(undefined, JSON.parse(userJson))
 }
 
-function verifyUser(username, user, done) {
-  User.upsert({
-    username,
-    email: user && user.emails && user.emails[0],
-    firstName: user && user.first_name && user.first_name[0],
-    lastName: user && user.last_name && user.last_name[0],
+function verifyPassword ({password}, code) {
+  return encrypt(password) === code
+}
+
+function verifyUser (username, password, done) {
+  User.findOne({
+    where: { username }
   })
-    .then(user => User.findOne({
-      where: { username },
-    })
-      .then(u => u.get({ plain: true })))
-    .asCallback(done);
+  .then(u => {
+    if (u) {
+      const user = u.get({ plain: true })
+      if (verifyPassword(user, password)) {
+        return user
+      }
+    }
+    return {user: 'hello'}
+  })
+  .asCallback(done)
 }
 
-function ensureLoggedIn(req, res, next) {
+function ensureLoggedIn (req, res, next) {
   if (!req.user) {
-    res.redirect(`${context}/auth/cas`);
-    return;
+    res.redirect(`${context}/app/login`)
+    return
   }
-  next();
+  next()
 }
 
-function ensureAuthorized(req, res, next) {
+function ensureAuthorized (req, res, next) {
   if (!req.user) {
-    res.status(401).json({ error: 'Unauthorized' });
-    return;
+    res.status(401).json({ error: 'Unauthorized' })
+    return
   }
-  next();
+  next()
 }
 
-passport.serializeUser(serializeUser);
-passport.deserializeUser(deserializeUser);
-const cas = new CasStrategy({ casURL }, verifyUser);
-passport.use(cas);
+passport.serializeUser(serializeUser)
+passport.deserializeUser(deserializeUser)
+const local = new LocalStrategy(verifyUser)
+passport.use(local)
 
-function logout(req, res) {
-  req.logout();
-  const host = req.get('host');
-  const redirectUrl = `${req.protocol}://${host}${context}/app`;
-  cas.logout(req, res, redirectUrl);
+function logout (req, res) {
+  req.logout()
+  const host = req.get('host')
+  console.log(host)
+  const redirectUrl = `${req.protocol}://${host}${context}/app`
+  console.log(redirectUrl)
+  local.logout(req, res, redirectUrl)
 }
 
 module.exports = {
@@ -66,5 +71,5 @@ module.exports = {
   deserializeUser,
   verifyUser,
   ensureLoggedIn,
-  ensureAuthorized,
-};
+  ensureAuthorized
+}
