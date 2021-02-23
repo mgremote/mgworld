@@ -70,7 +70,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest-cli": "24.1.0",
     "mysql": "2.16.0",
-    "node-sass": "4.11.0",
+    "node-sass": "4.13.1",
     "nodemon": "1.18.10",
     "raf": "3.4.1",
     "replay": "^2.4.0",
