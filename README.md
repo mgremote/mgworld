@@ -1,4 +1,4 @@
-# Portfolio for Meng Guo
+# Portfolio for M Guo
 
 Using Node.JS and React
 
